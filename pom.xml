@@ -28,7 +28,7 @@
                     <copyToAppsDirectory>true</copyToAppsDirectory>
 				</configuration>
 			</plugin>
-			<plugin>
+			<!-- <plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>build-helper-maven-plugin</artifactId>
 				<version>1.7</version>
@@ -54,7 +54,43 @@
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin> -->
+			<plugin>
+        <groupId>org.mule.tools.maven</groupId>
+        <artifactId>mule-maven-plugin</artifactId>
+        <version>2.0</version>
+        <configuration>
+            <deploymentType>one</deploymentType>
+            <muleVersion>3.6.2</muleVersion>
+            <username>Abhiraw77</username>
+            <password>Abhivan7*</password>
+            <redeploy>true</redeploy>
+            <environment>Production</environment>
+        </configuration>
+        <executions>
+            <execution>
+                <id>deploy</id>
+                <phase>deploy</phase>
+                <goals>
+                    <goal>deploy</goal>
+                </goals>
+            </execution>
+        </executions>
+    </plugin>
+    <plugin>
+      <groupId>com.mulesoft.munit.tools</groupId>
+      <artifactId>munit-maven-plugin</artifactId>
+      <version>2.1.3</version>
+      <executions>
+        <execution>
+          <id>test</id>
+          <phase>test</phase>
+          <goals>
+            <goal>test</goal>
+          </goals>
+        </execution>
+      </executions>
+    </plugin>
 		</plugins>
 	</build>
 
@@ -125,6 +161,19 @@
 			<version>${mule.version}</version>
 			<scope>test</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.mulesoft.munit/mule-munit-support -->
+		<dependency>
+    		<groupId>com.mulesoft.munit</groupId>
+    		<artifactId>mule-munit-support</artifactId>
+    		<version>3.8.1</version>
+    		<scope>test</scope>
+		</dependency>
+		<dependency>
+    		<groupId>com.mulesoft.munit</groupId>
+    		<artifactId>munit-runner</artifactId>
+    		<version>1.1.1</version>
+    		<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<repositories>
@@ -140,6 +189,7 @@
             <url>http://repository.mulesoft.org/releases/</url>
             <layout>default</layout>
         </repository>
+        
     </repositories>
     <pluginRepositories>
         <pluginRepository>
